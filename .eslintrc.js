@@ -18,7 +18,7 @@ module.exports = {
   plugins: [
     'react',
     'react-hooks',
-    'prettier',
+    // 'prettier',
     '@typescript-eslint',
     'simple-import-sort',
     'tailwindcss'
@@ -28,7 +28,7 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/eslint-recommended',
-    'plugin:prettier/recommended',
+    // 'plugin:prettier/recommended',
     'plugin:react/jsx-runtime',
     'plugin:react-hooks/recommended',
     'plugin:tailwindcss/recommended'

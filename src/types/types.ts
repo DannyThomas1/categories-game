@@ -7,6 +7,12 @@ export interface InitializerInfo {
 
 export type Category = 'standard' | 'custom' | 'mix'
 
+export enum GameStatus {
+  NotStarted = 'not-started',
+  InProgress = 'in-progress',
+  Finished = 'finished'
+}
+
 export interface Player {
   name: string
   id: string

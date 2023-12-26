@@ -1,13 +1,16 @@
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 
-import { valueValidations } from '@/helpers'
 import { Category, InitializerInfo, Player } from '@/types/types'
 
 import CategoriesInit from './CategoriesInit'
 import PlayersInit from './PlayersInit'
 
-function Initializer() {
+function Initializer({
+  onSubmit
+}: {
+  onSubmit: (values: InitializerInfo) => Promise<void>
+}) {
   const [initInfo, setInitInfo] = useState<InitializerInfo>({
     players: [],
     customCategories: [],
@@ -25,18 +28,6 @@ function Initializer() {
     setInitInfo({ ...initInfo, numRounds: parseInt(event.target.value) })
   }
 
-  const onSubmit = async (values: InitializerInfo) => {
-    console.log(initInfo)
-
-    const [result, errMsg] = await valueValidations(values)
-
-    if (!result) {
-      return toast.error(errMsg)
-    }
-
-    toast.success('Game Started!')
-  }
-
   const changePlayers = (players: Player[]) => {
     setInitInfo((initInfo) => ({ ...initInfo, players }))
   }
@@ -50,8 +41,8 @@ function Initializer() {
   }
 
   return (
-    <div className="flex w-fit animate-fade-up flex-col space-y-5 rounded-md border bg-white px-4 py-2 md:w-3/4">
-      <h1 className="mt-6 text-center text-xl font-semibold text-blue-500 md:text-2xl xl:text-3xl ">
+    <div className="flex w-11/12 animate-fade-up flex-col space-y-5 rounded-md border bg-white px-4 py-2 md:w-3/4">
+      <h1 className="mt-6 text-center text-xl font-semibold text-blue-500  md:text-3xl ">
         Get Started
       </h1>
 
@@ -68,7 +59,7 @@ function Initializer() {
             type="number"
             className=" rounded-md border p-2"
             min={1}
-            defaultValue={1}
+            defaultValue={initInfo.numRounds || 1}
             onChange={handleNumRoundsChange}
           />
         </div>
